@@ -1,0 +1,24 @@
+<resources>
+    <color
+        name="ui_primary">#79DBCA</color>
+    <color
+        name="ui_on_primary">#00382F</color>
+    <color
+        name="ui_container">#164B44</color>
+    <color
+        name="ui_on_container">#AEF1E3</color>
+    <color
+        name="ui_background">#101C20</color>
+    <color
+        name="ui_surface">#1B2B30</color>
+    <color
+        name="ui_text">#E2EEF0</color>
+    <color
+        name="ui_muted">#A6BCC1</color>
+    <color
+        name="ui_outline">#354B51</color>
+    <color
+        name="ui_error">#FFB1BA</color>
+    <color
+        name="ui_star">#F7CD71</color>
+</resources>

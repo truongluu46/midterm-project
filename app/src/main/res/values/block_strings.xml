@@ -1,0 +1,12 @@
+<resources>
+    <string
+        name="block_number">Chặn số</string>
+    <string
+        name="unblock_number">Bỏ chặn số</string>
+    <string
+        name="block_message">Chặn %1$s trong ứng dụng danh bạ? Bạn sẽ không thể gọi hoặc nhắn tin tới số này từ ứng dụng cho đến khi bỏ chặn.</string>
+    <string
+        name="blocked_status">Số này đã bị chặn trong ứng dụng danh bạ.</string>
+    <string
+        name="blocked_action">Hãy bỏ chặn số trước khi gọi hoặc nhắn tin.</string>
+</resources>

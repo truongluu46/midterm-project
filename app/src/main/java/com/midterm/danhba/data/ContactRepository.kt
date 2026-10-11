@@ -12,7 +12,11 @@ import org.json.JSONObject
 import java.io.File
 import java.util.concurrent.Executors
 
-/** Shared repository: serialize every read/write and publish only committed snapshots. */
+/*
+MSSV: 123220163
+Ten: Truong Dinh Luu
+Lop: 22PFIEV3
+ */
 class ContactRepository internal constructor(context: Context) {
     private val file = AtomicFile(File(context.applicationContext.filesDir, "contacts.json"))
     private val executor = Executors.newSingleThreadExecutor()
@@ -31,6 +35,11 @@ class ContactRepository internal constructor(context: Context) {
     fun toggleFavorite(id: String, callback: (Result<List<Contact>>) -> Unit) = task(callback) {
         commit(load().map { if (it.id == id) it.copy(isFavorite = !it.isFavorite) else it })
     }
+    fun toggleBlocked(id: String, callback: (Result<List<Contact>>) -> Unit) = task(callback) {
+        val old = load()
+        require(old.any { it.id == id })
+        commit(old.map { if (it.id == id) it.copy(isBlocked = !it.isBlocked) else it })
+    }
     private fun task(callback: (Result<List<Contact>>) -> Unit, action: () -> List<Contact>) {
         executor.execute { val result = runCatching(action); main.post { callback(result) } }
     }
@@ -48,7 +57,7 @@ class ContactRepository internal constructor(context: Context) {
         val loaded = (0 until rows.length()).map { i ->
             val row = rows.getJSONObject(i)
             Contact(row.getString("id"), row.getString("name"), row.getString("phone"),
-                row.getString("email"), row.getString("group"), row.getString("note"), row.getBoolean("isFavorite"))
+                row.optString("email", ""), row.getString("group"), row.getString("note"), row.getBoolean("isFavorite"), row.optBoolean("isBlocked", false))
         }
         require(loaded.map { it.id }.distinct().size == loaded.size)
         require(loaded.all { it.id.isNotBlank() && it.name.isNotBlank() && ContactValidator.validPhone(it.phone) && ContactGroup.entries.any { g -> g.key == it.group } })
@@ -58,7 +67,7 @@ class ContactRepository internal constructor(context: Context) {
     private fun commit(contacts: List<Contact>): List<Contact> {
         val rows = JSONArray()
         contacts.forEach { c -> rows.put(JSONObject().put("id", c.id).put("name", c.name).put("phone", c.phone)
-            .put("email", c.email).put("group", c.group).put("note", c.note).put("isFavorite", c.isFavorite)) }
+            .put("email", c.email).put("group", c.group).put("note", c.note).put("isFavorite", c.isFavorite).put("isBlocked", c.isBlocked)) }
         val bytes = JSONObject().put("schemaVersion", 1).put("contacts", rows).toString().toByteArray(Charsets.UTF_8)
         val stream = file.startWrite()
         try { stream.write(bytes); file.finishWrite(stream) }

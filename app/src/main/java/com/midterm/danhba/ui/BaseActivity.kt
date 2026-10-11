@@ -7,14 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.midterm.danhba.R
 import com.midterm.danhba.data.ContactRepository
 
 abstract class BaseActivity : AppCompatActivity() {
     protected val repository by lazy { ContactRepository.get(this) }
     override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState); enableEdgeToEdge() }
-    protected fun insets() {
-        val root = findViewById<View>(R.id.main)
+    protected fun insets(root: View) {
         val left = root.paddingLeft; val top = root.paddingTop; val right = root.paddingRight; val bottom = root.paddingBottom
         ViewCompat.setOnApplyWindowInsetsListener(root) { v, i ->
             val bars = i.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())

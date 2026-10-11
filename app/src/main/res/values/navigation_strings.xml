@@ -1,0 +1,12 @@
+<resources>
+    <string
+        name="tab_favorites">Ưa thích</string>
+    <string
+        name="tab_dialpad">Bàn phím</string>
+    <string
+        name="empty_favorites">Chưa có liên hệ ưa thích. Đánh dấu sao trong chi tiết liên hệ để thêm vào đây.</string>
+    <string
+        name="dial_hint">Nhập số điện thoại</string>
+    <string
+        name="dial_delete">Xóa số</string>
+</resources>

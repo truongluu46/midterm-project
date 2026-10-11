@@ -40,6 +40,26 @@ class ContactRepositoryTest {
         awaitResult { second.delete(c.id, it) }.getOrThrow()
         assertTrue(awaitResult { ContactRepository(ctx).list(it) }.getOrThrow().isEmpty())
     }
+    @Test fun blockedStatePersistsAndCanBeRemoved() {
+        val ctx = context()
+        val repository = ContactRepository(ctx)
+        val contact = Contact("blocked", "An", "0901234567")
+        awaitResult { repository.save(contact, it) }.getOrThrow()
+        assertTrue(awaitResult { repository.toggleBlocked(contact.id, it) }.getOrThrow().single().isBlocked)
+        val reopened = ContactRepository(ctx)
+        assertTrue(awaitResult { reopened.list(it) }.getOrThrow().single().isBlocked)
+        awaitResult { reopened.toggleFavorite(contact.id, it) }.getOrThrow()
+        assertTrue(awaitResult { reopened.list(it) }.getOrThrow().single().isBlocked)
+        assertFalse(awaitResult { reopened.toggleBlocked(contact.id, it) }.getOrThrow().single().isBlocked)
+        assertFalse(awaitResult { ContactRepository(ctx).list(it) }.getOrThrow().single().isBlocked)
+    }
+    @Test fun legacyContactsDefaultToUnblocked() {
+        val ctx = context()
+        File(ctx.filesDir, "contacts.json").writeText(
+            """{"schemaVersion":1,"contacts":[{"id":"legacy","name":"An","phone":"0901234567","email":"","group":"other","note":"","isFavorite":false}]}"""
+        )
+        assertFalse(awaitResult { ContactRepository(ctx).list(it) }.getOrThrow().single().isBlocked)
+    }
     @Test fun corruptFileIsPreservedAndMutationsFail() {
         val ctx = context()
         val file = File(ctx.filesDir, "contacts.json")

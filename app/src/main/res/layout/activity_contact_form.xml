@@ -1,2 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/main" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp"><com.google.android.material.button.MaterialButton android:id="@+id/back" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/back"/><TextView android:id="@+id/title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/add_contact" android:paddingBottom="8dp" android:textSize="26sp" android:textStyle="bold"/><EditText android:id="@+id/name" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="56dp" android:hint="@string/name" android:inputType="textPersonName" android:padding="12dp" android:maxLines="1"/><EditText android:id="@+id/phone" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="56dp" android:hint="@string/phone" android:inputType="phone" android:padding="12dp" android:maxLines="1"/><EditText android:id="@+id/email" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="56dp" android:hint="@string/email" android:inputType="textEmailAddress" android:padding="12dp" android:maxLines="1"/><TextView android:id="@+id/groupLabel" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/group" android:paddingBottom="8dp" /><Spinner android:id="@+id/group" android:layout_width="match_parent" android:layout_height="48dp"/><CheckBox android:id="@+id/favorite" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/favorite"/><EditText android:id="@+id/note" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="56dp" android:hint="@string/note" android:inputType="textMultiLine|textCapSentences" android:padding="12dp" android:minLines="3" android:gravity="top"/><com.google.android.material.button.MaterialButton android:id="@+id/save" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/save"/></LinearLayout></androidx.core.widget.NestedScrollView>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/ui_background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_contact"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/ui_text"
+            android:layout_marginBottom="8dp" />
+        <TextView
+            style="@style/Ui.Value"
+            android:text="@string/form_hint"
+            android:textColor="@color/ui_muted"
+            android:layout_marginBottom="24dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/name"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="56dp"
+                android:inputType="textPersonName"
+                android:singleLine="true"
+                android:imeOptions="actionNext" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/phone"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="56dp"
+                android:inputType="phone"
+                android:singleLine="true"
+                android:imeOptions="actionNext" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/groupLabel"
+            style="@style/Ui.Label"
+            android:text="@string/group"
+            android:layout_marginTop="0dp" />
+        <Spinner
+            android:id="@+id/group"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/surface_card"
+            android:contentDescription="@string/group" />
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/favorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:text="@string/favorite"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/note"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="56dp"
+                android:inputType="textMultiLine|textCapSentences"
+                android:minLines="3"
+                android:gravity="top" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

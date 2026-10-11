@@ -3,10 +3,13 @@ plugins {
 }
 
 android {
+    buildFeatures {
+        viewBinding = true
+    }
     namespace = "com.midterm.danhba"
     compileSdk {
         version = release(37) {
-            minorApiLevel = 1
+            minorApiLevel = 0
         }
     }
 

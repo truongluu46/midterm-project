@@ -1,5 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color
+        name="black">#FF000000</color>
+    <color
+        name="white">#FFFFFFFF</color>
+    <color
+        name="ui_primary">#087F75</color>
+    <color
+        name="ui_on_primary">#FFFFFF</color>
+    <color
+        name="ui_container">#D9F3EC</color>
+    <color
+        name="ui_on_container">#07594F</color>
+    <color
+        name="ui_background">#F4F7F8</color>
+    <color
+        name="ui_surface">#FFFFFF</color>
+    <color
+        name="ui_text">#172D32</color>
+    <color
+        name="ui_muted">#61757B</color>
+    <color
+        name="ui_outline">#DCE5E7</color>
+    <color
+        name="ui_error">#BA3546</color>
+    <color
+        name="ui_star">#AD7000</color>
 </resources>
